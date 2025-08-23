@@ -5,7 +5,7 @@
 MagneticSensorI2C sensor = MagneticSensorI2C(AS5600_I2C);
 
 // 2) BLDC 모터 & 드라이버 설정
-//    - 모터: BLDCMotor(pole_pairs) -> 5010 모터라면 극쌍수(pole_pairs) 7 등
+// BLDCMotor(pole_pairs) -> 5010 모터의 극쌍수(pole_pairs) 7
 BLDCMotor motor = BLDCMotor(7);
 BLDCDriver3PWM driver = BLDCDriver3PWM(9, 5, 6, 8);
 
@@ -17,7 +17,6 @@ float ref_angle = 0.0;  // 평형 각도 (rad)
 // Commander 인스턴스
 Commander command = Commander(Serial);
 
-// 커맨드 파서 함수들
 void doRefAngle(char* cmd) { command.scalar(&ref_angle, cmd); }
 void doKspring(char* cmd) { command.scalar(&K_spring, cmd); }
 void doCdamper(char* cmd) { command.scalar(&C_damper, cmd); }
@@ -32,7 +31,7 @@ void setup() {
   motor.linkSensor(&sensor);
 
   // 드라이버 초기화
-  driver.voltage_power_supply = 24;  // 전원 전압 (예: 12V)
+  driver.voltage_power_supply = 24;  // DC 전원 전압 
   driver.init();
   motor.linkDriver(&driver);
 
