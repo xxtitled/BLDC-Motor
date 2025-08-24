@@ -73,7 +73,7 @@ void setup() {
   Serial.println("  K <val> : set spring constant");
   Serial.println("  C <val> : set damping constant");
 
-  _delay(1000);
+  delay(1000);
 }
 
 void loop() {
